@@ -1,0 +1,2 @@
+ ###emet de YHWH
+la emet de yhwh es una página inspirada en la lectura de las escrituras dentro de su contexto correcto, el contexto hebreo, heredado al pueblo judio, si bien ellos no son la totalidad de israel(12 tribus) si no solo las tribus de juda y benjamin, el pueblo judio es el guardian actual del legado del pueblo hebreo y son la tribu señalada para traer al mesias, el león de judá, el resto  de israel  esta en la dispersión, en medio de las naciones, de donde YHWH prometió llamar a su pueblo.

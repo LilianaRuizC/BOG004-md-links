@@ -3,9 +3,48 @@
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
+  },"description": "## Índice",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
   },
+  "scripts": {
+    "test":"jest --coverage"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LilianaRuizC/BOG004-md-links"
+  },
+  "keywords": [
+    "markdown",
+    "md",
+    "nodejs",
+    "library",
+    "filesystem",
+    "validate",
+    "stats",
+    "http",
+    "link"
+  ],
+  "author": "Liliana Ruiz",
+  "license": "ISC",
+  "bin": {
+    "mdlinks": "./index2.js"
+  },
+
+  "bugs": {
+    "url": "https://github.com/LilianaRuizC/BOG004-md-links"
+    
+  },
+  "homepage": "https://github.com/LilianaRuizC/BOG004-md-links",
+
   "dependencies": {
     "axios": "^0.27.2",
     "cli-color": "^2.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "jest": "^28.1.0"
   }
 }

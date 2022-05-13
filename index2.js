@@ -1,5 +1,4 @@
-const [, ,route, ...options] = process.argv;
-
+#!/usr/bin/env node
 const {
   clc,
   routeAbsolute,
@@ -12,15 +11,47 @@ const {
   statOption,
   statValidateOption,
 } = require('./cli')
+//AQUI DECLARO LAS CONSTANTES NECESARIAS PARA CAPTURAR LO ESCRITO EN CONSOLA
+const [, ,route, ...optionsUser] = process.argv;
+const validate =optionsUser.includes('--v') || optionsUser.includes('--validate')? true : false;
+const stats= optionsUser.includes('--s')|| optionsUser.includes('--stats') ? true : false;
 
-// convierto la ruta en absoluta
-let Route = routeAbsolute(route);
 
-// obtengo array de mdFiles
-const myMDfiles = listMDfiles(myRoute);
+// *******FUNCION MDLINKS VERSION 2*****
+const mdLinks=(path,options) => {
+        return new Promise ((resolve, reject) => {
+         //pasar ruta a absoluta
+         let myRoute = routeAbsolute(path);
+         //array de mdfiles
+         const myMDfiles = listMDfiles(myRoute);
 
+         if (!options.validate && !options.stats){
+             getLinksInfo(myMDfiles)
+             .then(data => resolve (data))
+             .catch(err => reject (err))
+         } else if (options.validate && options.stats){
+             statValidateOption(myMDfiles)
+             .then(data => resolve(data))
+             .catch (err => reject(err))
+         } else if(options.validate){
+             validateOption (myMDfiles)
+             .then(data => resolve (data))
+             .catch(err => reject (err))
+         } else if (options.stats){
+             statOption (myMDfiles)
+             .then(data => resolve (data))
+             .catch (err => reject (err))
+         }
+     })
+
+}
+mdLinks(route,{validate,stats})
+.then(data => console.log (data))
+.catch(error => console.log(error))
+
+module.exports={mdLinks}
 // función mdLinks
-const mdLinks = (array, options) => {
+/*const mdLinks = (array, options) => {
   if(options == '--validate'){
       return new Promise((resolve, reject) => {
           validateOption(array)
@@ -58,8 +89,5 @@ const mdLinks = (array, options) => {
               .catch(err => reject(err))
       })
   }
-}
+}*/
 
-mdLinks(myMDfiles, options)
-.then(data => data)
-.catch(error => console.log(error))

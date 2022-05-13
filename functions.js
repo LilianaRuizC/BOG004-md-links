@@ -12,7 +12,7 @@ const routeAbsolute = (userRoute) => {
         console.log(clc.red(`███▓▒░░La ruta ingresada no es valida░░▒▓███  
 
        `));
-        process.exit()
+       // process.exit()
     }
     if(path.isAbsolute(userRoute)){
         return userRoute;
@@ -27,7 +27,9 @@ const routeAbsolute = (userRoute) => {
 // si se ingresa un archivo.md solo muestra el archivo
 
 const listMDfiles = (userRoute) => {
-    let MDfilesArray = [];
+    const separator = process.platform === "win32" || process.platform === "win64" ? "\\" : "/";
+
+     let MDfilesArray = [];
     if(fs.statSync(userRoute).isFile() && path.extname(userRoute) === '.md'){
         MDfilesArray.push(userRoute);
     }
@@ -35,7 +37,7 @@ const listMDfiles = (userRoute) => {
         const closeDirectory = userRoute;
         let openDirectory = fs.readdirSync(closeDirectory);
         openDirectory.forEach(elem => {
-            listMDfiles(userRoute + '/' + elem).forEach(elem => {
+            listMDfiles(userRoute + separator + elem).forEach(elem => {
                 MDfilesArray.push(elem);
             })
         })
@@ -43,10 +45,11 @@ const listMDfiles = (userRoute) => {
     if(MDfilesArray.length === 0){
         console.log(clc.red(`███▓▒░░No hay archivos Markdown░░▒▓███  
          `))
-        process.exit()
+        //process.exit()
     }
     return MDfilesArray;
 };
+
 
 // promesa de lectura de archivos
 
@@ -72,10 +75,11 @@ const getLinksInfo = (array) => {
         .then(data => {
             const expLink = /!*\[(.+?)\]\((.+?)\)/gi;
             data.forEach(item => {
-                const matchLinks = [... item.fileContent.toString().match(expLink)];
+                const matchLinks = item.fileContent.match(expLink);
                 matchLinks.forEach(link => {
-                    linksArray.push(link);
-                    routeArray.push(item.route)
+                    if(matchLinks){
+                         linksArray.push(link);
+                        routeArray.push(item.route)}    
                 });
             })
             resultObjArray = linksArray.map((totalLink) => {

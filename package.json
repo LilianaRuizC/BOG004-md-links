@@ -1,10 +1,10 @@
 {
-  "name": "md-links",
+  "name": "md-links-lruiz",
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
-  },"description": "## Índice",
-  "main": "index.js",
+  },"description": "libreria para validar archivos markdown sus links y estado de estos",
+  "main": "index2.js",
   "directories": {
     "test": "test"
   },

@@ -1,6 +1,6 @@
 {
   "name": "md-links-lruiz",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "engines": {
     "node": ">=14.x"
   },"description": "libreria para validar archivos markdown sus links y estado de estos",
